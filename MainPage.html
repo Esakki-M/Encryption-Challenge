@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSPVL Polytechnic College Expo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Define the fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Apply animation to the text */
+        .fade-text {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
+            overflow: hidden; /* Prevent scrollbars from mouse animation */
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: white;
+            font-family: poppins;
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: slideIn 1.5s ease-in-out;
+            font-family: 'Poppins', cursive;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: White;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+            font-family: 'Poppins', cursive;
+        }
+
+        section p {
+            font-size: 1.5rem;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* GIF Image */
+        .gif {
+            display: flex;
+            margin-top: 20px;
+            margin-left: 30%;
+            width: 650px;
+            max-width: 800px;
+            height: 500px;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video Section */
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Next Page Button */
+        .next-page-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .next-page-button a {
+            padding: 17px 25px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 70px;
+            font-size: 1.9rem;
+            transition: background 0.3s;
+        }
+
+        .next-page-button a:hover {
+            background: #2980b9;
+        }
+
+        /* Event Schedule */
+        .schedule {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .schedule-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            transition: transform 0.3s;
+        }
+
+        .schedule-item:hover {
+            transform: scale(1.05);
+        }
+
+        .schedule-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #3498db;
+            font-family: 'Poppins', cursive;
+        }
+
+        .schedule-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Enhanced Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 16/9;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Image Overlay Effect */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Optional Caption */
+        .gallery-caption {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            color: white;
+            z-index: 1;
+            transition: bottom 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            bottom: 0;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fun Animations */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .bounce {
+            animation: bounce 1s infinite;
+        }
+
+        /* Fun Shapes */
+        .fun-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .fun-shapes div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        body {
+            background-image: url('https://wallpaperaccess.com/full/467494.png'); /* Replace with your anime image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        /* Optional: Adding an overlay effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better readability */
+            z-index: -1;
+        }
+
+        /* Background Animation */
+        body {
+            margin: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 5s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 8em;
+            animation: wave 3s -2s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -1.5em;
+            animation: wave 2s -1s reverse infinite;
+            opacity: 10;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+
+            25% {
+                transform: translateX(-25%);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+
+            75% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(1);
+            }
+        }
+
+        /* Mouse Animation */
+        .mouse-trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: fadeOut 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mouse Trail Container -->
+    <div id="mouse-trail-container"></div>
+
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <!-- Fun Shapes -->
+    <div class="fun-shapes">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Welcome to MSPVL Polytechnic College Expo!</h1>
+        <p>Join us for an exciting showcase of innovation, creativity, and talent.</p>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Cryptography.</h2>
+        <p>Cryptography is a technique of securing information and communications through the use of codes so that only those persons for whom the information is intended can understand and process it. Thus, preventing unauthorized access to information.</p>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video">
+        <h2>Learn About Encryption</h2>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TImdsUglGv4?si=MR_6r5WTQ-Gsg2Bf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule">
+        <h2>Components of Cryptography</h2>
+        <div class="schedule">
+            <div class="schedule-item">
+                <h3>Plaintext</h3>
+                <p>Example: "Hello, how are you?"</p>
+            </div>
+            <div class="schedule-item">
+                <h3>Ciphertext</h3>
+                <p>Example: If the plaintext "Hello, how are you?" is encrypted, it might become something like "Xlmmp, jvs arl vbt?"</p>
+            </div>
+            <div class="schedule-item">
+                <h3>Encryption Algorithm</h3>
+                <p>Example: The Caesar cipher or AES (Advanced Encryption Standard).</p>
+            </div>
+            <div class="schedule-item">
+                <h3>Decryption Algorithm</h3>
+                <p>Example: If a message was encrypted with AES, it must be decrypted using the corresponding decryption algorithm.</p>
+            </div>
+            <div class="schedule-item">
+                <h3>Key</h3>
+                <p>Example: In a simple substitution cipher, the key could be a number or word like "3" or "key123".</p>
+            </div>
+            <div class="schedule-item">
+                <h3>Cryptographic Protocols</h3>
+                <p>Examples: SSL/TLS: Secure communication protocols for transmitting data over the internet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="fade-text">Why we need Encryption ?</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="200.WEBP" alt="Expo Image 1">
+                <div class="gallery-caption">
+                    <h3>Cyber Attack</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="encryption.gif" alt="Expo Image 3">
+                <div class="gallery-caption">
+                    <h3>Encryption</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="anonymous-pixiz.GIF">
+                <div class="gallery-caption">
+                    <h3>Hacker</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Page Button -->
+    <div class="next-page-button bounce">
+        <a href="index.html">Go to the Challenge!</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 MSPVL Polytechnic College. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Mouse Animation Script -->
+    <script>
+        const container = document.getElementById('mouse-trail-container');
+
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = `${e.pageX}px`;
+            trail.style.top = `${e.pageY}px`;
+            container.appendChild(trail);
+
+            // Remove the trail element after the animation ends
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Challenge</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire area */
+        }
+ /* Video Background */
+ .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind other content */
+            overflow: hidden;
+        }
+    body, html {
+        height: 100%;
+        font-family: 'Rockwell', 'Times New Roman';
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .container {
+        display: flex;
+        align-items: stretch;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        border-radius: 30px;
+        padding: 20px;
+        width: 90%;
+        max-width: 1200px;
+        text-align: center;
+        box-shadow: 0 0 50px rgba(255, 0, 255, 0.5), 0 0 100px rgba(0, 255, 255, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #ff00ff, #00ffff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+    }
+
+    .clock {
+        width: 150px;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 20px auto;
+        border: 4px solid #ff00ff;
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+        animation: glow 0s infinite alternate;
+    }
+
+    @keyframes glow {
+        0% { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
+        100% { box-shadow: 0 0 40px #ff00ff, 0 0 60px #00ffff; }
+    }
+
+    .timer-buttons button {
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        margin: 10px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ff00ff, #00ffff);
+        color: #000;
+        font-weight: bold;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timer-buttons button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+    }
+
+    #question-container {
+        font-size: 25px;
+        margin-top: 20px;
+        font-family:'Georgia';
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        font-size: 1.2rem;
+        border-radius: 30px;
+        border: 2px solid #ff00ff;
+        width: 80%;
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+    }
+
+    input[type="text"]::placeholder {
+        color: #ccc;
+    }
+
+    button[type="submit"] {
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        color: #000;
+        font-weight: bold;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
+    #feedback {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #ff00ff;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+        animation: feedback-animation 0.5s ease;
+    }
+
+    @keyframes feedback-animation {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    #image-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    #image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        border: 2px solid #ff00ff;
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+        transition: transform 0.3s ease;
+    }
+
+    #image-container img:hover {
+        transform: scale(1.05);
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 0.9rem;
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    footer a {
+        color: #00ffff;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        #image-container {
+            order: -1;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+     <!-- Video Background -->
+     <div class="video-background">
+        <video autoplay muted loop>
+            <source src="back.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>Encryption Challenge</h1>
+            <div class="clock" id="timer-text">30</div>
+            <div class="timer-buttons">
+                <button id="start-btn" onclick="startTimer()">Start</button>
+                <button id="reset-btn" onclick="resetTimer()">Reset</button>
+            </div>
+            <div id="question-container">
+                <p id="question">Encrypt APPLE using Caesar Cipher</p><br>
+                <input type="text" id="answer" placeholder="Your answer" required>
+                <button type="submit" onclick="checkAnswer()">Submit</button>
+                <p id="feedback"></p>
+            </div>
+        </div>
+        <div id="image-container">
+            <img id="quiz-image" src="123.png" alt="Quiz Image">
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by <a href="https://example.com" target="_blank">Team Heartless ❤️</a></p>
+    </footer>
+
+    <script>
+
+        // Timer Functionality
+        let timeLeft = 30;
+        let timerInterval;
+        let isRunning = false;
+
+        function startTimer() {
+            if (isRunning) return;
+            isRunning = true;
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('timer-text').textContent = timeLeft;
+            } else {
+                clearInterval(timerInterval);
+                alert("Time's up!");
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 30;
+            isRunning = false;
+            document.getElementById('timer-text').textContent = timeLeft;
+        }
+
+        // Quiz Functionality
+        const questions = [
+            // Caesar Cipher (Shift 1)
+            { question: "Encrypt APPLE using Caesar Cipher", answer: "bqqmf" },
+            { question: "Encrypt HELLO using Caesar Cipher", answer: "ifmmp" },
+            { question: "Encrypt WORLD using Caesar Cipher", answer: "xpsme" },
+            { question: "Encrypt CIPHER using Caesar Cipher", answer: "djqifs" },
+            { question: "Encrypt SECRET using Caesar Cipher", answer: "tfdsfu" },
+            { question: "Encrypt MESSAGE using Caesar Cipher", answer: "nfttbhf" },
+            { question: "Encrypt WIZARD using Caesar Cipher", answer: "xjabse" },
+            { question: "Encrypt EXAMPLE using Caesar Cipher", answer: "fybnqmf" },
+            { question: "Encrypt CHALLENGE using Caesar Cipher", answer: "dibmmfohf" },
+            { question: "Encrypt PUZZLE using Caesar Cipher", answer: "qvaamf" },
+
+            // Atbash Cipher
+            { question: "Encrypt APPLE using Atbash Cipher", answer: "ZKKOV" },
+            { question: "Encrypt HELLO using Atbash Cipher", answer: "SVOOL" },
+            { question: "Encrypt WORLD using Atbash Cipher", answer: "DLIOW" },
+            { question: "Encrypt CIPHER using Atbash Cipher", answer: "XRKSVI" },
+            { question: "Encrypt SECRET using Atbash Cipher", answer: "HVXVIG" },
+            { question: "Encrypt MESSAGE using Atbash Cipher", answer: "NVHHZT" },
+            { question: "Encrypt WIZARD using Atbash Cipher", answer: "DRAZIW" },
+            { question: "Encrypt EXAMPLE using Atbash Cipher", answer: "VCPZNOV" },
+            { question: "Encrypt CHALLENGE using Atbash Cipher", answer: "XSVOVMTV" },
+            { question: "Encrypt PUZZLE using Atbash Cipher", answer: "KFAAVI" },
+
+            // Bacon Cipher
+            { question: "Encrypt cat using Bacon Cipher", answer: "aabab aaaaa abbaa" },
+            { question: "Encrypt bat using Bacon Cipher", answer: "aabaa aaaaa abbaa" },
+            { question: "Encrypt dog using Bacon Cipher", answer: "aabba aabbb aabaa" },
+            { question: "Encrypt fox using Bacon Cipher", answer: "aabba abbba aabbb" },
+            { question: "Encrypt sun using Bacon Cipher", answer: "abbab aabba abaab" },
+            { question: "Encrypt moon using Bacon Cipher", answer: "abbba aabba aaba aaba" },
+            { question: "Encrypt rain using Bacon Cipher", answer: "abbab aaaaa aaba aabba" },
+            { question: "Encrypt tree using Bacon Cipher", answer: "ababb aabba aabba aabba" },
+            { question: "Encrypt wind using Bacon Cipher", answer: "abbba aabba aaba aabba" },
+            { question: "Encrypt sky using Bacon Cipher", answer: "abbab abbba aabbb" },
+
+            // Caesar Cipher (Shift 2)
+            { question: "Encrypt cat using Caesar Cipher (shift 2)", answer: "ecv" },
+            { question: "Encrypt bat using Caesar Cipher (shift 2)", answer: "dcv" },
+            { question: "Encrypt dog using Caesar Cipher (shift 2)", answer: "fqj" },
+            { question: "Encrypt fox using Caesar Cipher (shift 2)", answer: "hqa" },
+            { question: "Encrypt sun using Caesar Cipher (shift 2)", answer: "wwp" },
+            { question: "Encrypt moon using Caesar Cipher (shift 2)", answer: "oqqp" },
+            { question: "Encrypt rain using Caesar Cipher (shift 2)", answer: "tckp" },
+            { question: "Encrypt challenge using Caesar Cipher (shift 2)", answer: "ejcnngpgi" },
+            { question: "Encrypt message using Caesar Cipher (shift 2)", answer: "oguucig" },
+            { question: "Encrypt elephant using Caesar Cipher (shift 2)", answer: "gnrjcpv" },
+
+            // Caesar Cipher (Shift 3)
+            { question: "Encrypt Hoodies using Caesar Cipher (shift 3)", answer: "Krrglhv" },
+            { question: "Encrypt Jacket using Caesar Cipher (shift 3)", answer: "Mdfnhw" },
+            { question: "Encrypt Sweater using Caesar Cipher (shift 3)", answer: "Vzhdwhu" },
+            { question: "Encrypt Blanket using Caesar Cipher (shift 3)", answer: "Eodqnhw" },
+            { question: "Encrypt Sneakers using Caesar Cipher (shift 3)", answer: "Vqhdnhuv" },
+            { question: "Encrypt Backpack using Caesar Cipher (shift 3)", answer: "Edfnsdfn" },
+            { question: "Encrypt Trousers using Caesar Cipher (shift 3)", answer: "Wurxvhuv" },
+            { question: "Encrypt Umbrella using Caesar Cipher (shift 3)", answer: "Xpeuhood" },
+            { question: "Encrypt Gloves using Caesar Cipher (shift 3)", answer: "Joryhv" },
+            { question: "Encrypt Scarf using Caesar Cipher (shift 3)", answer: "Vfdui" }
+        ];
+
+        const imagePaths = ["shift1.png","shift1.png","shift1.png","shift1.png","shift1.png","shift1.png","shift1.png","shift1.png","shift1.png","shift1.png", "atbash.png","atbash.png","atbash.png","atbash.png","atbash.png","atbash.png","atbash.png","atbash.png","atbash.png","atbash.png", "bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","bacon.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift2.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png","shift3.png"]; // Add more image paths as needed
+        let currentQuestion = 0;
+        let currentImageIndex = 0;
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const correctAnswer = questions[currentQuestion].answer;
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById('feedback').textContent = "Correct!";
+                currentQuestion = (currentQuestion + 1) % questions.length;
+                document.getElementById('question').textContent = questions[currentQuestion].question;
+
+                // Change the image
+                currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+                document.getElementById('quiz-image').src = imagePaths[currentImageIndex];
+            } else {
+                document.getElementById('feedback').textContent = "Incorrect! Try again.";
+            }
+
+            document.getElementById('answer').value = '';
+        }
+
+        // Additional Features
+        let score = 0;
+
+        function updateScore() {
+            score++;
+            console.log(`Score: ${score}`);
+        }
+
+        function validateInput(input) {
+            if (!input) {
+                alert("Please enter an answer!");
+                return false;
+            }
+            return true;
+        }
+
+        function showHint() {
+            alert(`Hint: The encryption is a Caesar Cipher with a shift of 1.`);
+        }
+
+        function animateFeedback() {
+            const feedbackElement = document.getElementById('feedback');
+            feedbackElement.style.animation = 'none';
+            setTimeout(() => {
+                feedbackElement.style.animation = 'feedback-animation 0.5s ease';
+            }, 10);
+        }
+    </script>
+</body>
+</html>
